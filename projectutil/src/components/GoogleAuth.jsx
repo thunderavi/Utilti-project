@@ -4,7 +4,7 @@ import "./GoogleAuth.css";
 
 function GoogleAuth({ setIsLoggedIn }) {
   const clientId =
-    "86038152485-r3t7mpnclgonc8jvbvshhllmthnqrh8f.apps.googleusercontent.com";
+    "86038152485-86l4mv44tejmmmbubmlq9p2h73u6pcda.apps.googleusercontent.com";
 
   const handleSuccess = (response) => {
     console.log("Google login success:", response);
