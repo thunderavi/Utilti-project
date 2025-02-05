@@ -21,10 +21,13 @@ function GoogleAuth({ setIsLoggedIn }) {
       <div className="google-login-container">
         
         {/* Floating fake chat bubbles */}
-        <div className="chat-bubble">"Welcome! 🎉"</div>
-        <div className="chat-bubble">"Login securely with Google 🔐"</div>
-        <div className="chat-bubble">"Excited to see you! 😊"</div>
-        <div className="chat-bubble">"🚀 Your journey starts here"</div>
+        <div className="chat-bubbles">
+  <div className="chat-bubble">{"Welcome! 🎉"}</div>
+  <div className="chat-bubble">{"Login securely with Google 🔐"}</div>
+  <div className="chat-bubble">{"Excited to see you! 😊"}</div>
+  <div className="chat-bubble">{"🚀 Your journey starts here"}</div>
+</div>
+
 
         {/* Floating glow elements */}
         <div className="floating-glow"></div>
