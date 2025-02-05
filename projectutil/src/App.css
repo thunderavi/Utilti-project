@@ -1,34 +1,115 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root, .container {
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  position: relative;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  overflow: hidden; /* Prevent scrolling */
 }
 
-.logout-btn {
-  align-self: flex-end; /* Align the button to the right */
-  padding: 0.5rem 1rem;
-  background-color: #61dafb;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
+.logout-container {
+  padding: 1rem;
+  color: #FFA500; /* Orange text color */
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Updated Grid Layout */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-template-rows: repeat(2, 1fr); /* Two rows */
+  gap: 1rem;
+  padding: 1rem;
+  flex: 1;
+  height: calc(100vh - 60px); /* Adjust height to fit screen */
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #FFA500; /* Orange border */
+  border-radius: 8px;
+  padding: 1rem;
+  min-height: 200px;
+  box-shadow: 0px 2px 4px rgba(255, 165, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  height: 100%; /* Ensures all items fit within their grid */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* Stacks components on small screens */
+    grid-template-rows: auto;
+  }
+}
+
+.form-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem;
+  box-shadow: 0px 2px 4px rgba(255, 165, 0, 0.1);
+}
+
+.feature3-container {
+  width: 100%;
+  height: auto;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #1e1e2f;
   color: white;
-  transition: background-color 0.3s ease;
-  margin-bottom: 1rem; /* Add margin to ensure it doesn't stick to the top */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.logout-btn:hover {
-  background-color: #4fa3d1;
+.editor-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  /* color: black; */
+  margin-bottom: 8px;
 }
 
-.card {
-  padding: 2em;
+.divider {
+  width: 100%;
+  background-color: #444;
+  margin-bottom: 12px;
 }
 
-.read-the-docs {
-  color: #888;
+.quill-editor {
+  width: 100%;
+  min-height: 100px;
+  border-radius: 8px;
+  border: none;
+  background-color: white;
+  padding: 8px;
 }
+
+.save-button {
+  background-color: #007bff;
+  color: white;
+  font-size: 14px;
+  text-transform: none;
+  border-radius: 8px;
+  padding: 6px 16px;
+}
+
+.save-button:hover {
+  background-color: #0056b3;
+}
+
+

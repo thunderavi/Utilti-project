@@ -1,5 +1,5 @@
-import  { useState, useEffect } from "react";
-import { TextField, Button, Container, Typography, Paper } from "@mui/material";
+import { useState, useEffect } from "react";
+import { TextField, Button, Typography, Paper, Grid, Switch, FormControlLabel } from "@mui/material";
 
 const Feature2 = () => {
   const [formData, setFormData] = useState({
@@ -11,9 +11,9 @@ const Feature2 = () => {
   });
 
   const [isFormDirty, setIsFormDirty] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false); // Dark mode state
 
   useEffect(() => {
-    // Load saved data from Local Storage
     const savedData = JSON.parse(localStorage.getItem("userData"));
     if (savedData) {
       setFormData(savedData);
@@ -21,7 +21,6 @@ const Feature2 = () => {
       setFormData((prev) => ({ ...prev, id: `USR-${Date.now()}` })); // Generate User ID
     }
 
-    // Warn user if they try to leave with unsaved changes
     const handleBeforeUnload = (event) => {
       if (isFormDirty) {
         event.preventDefault();
@@ -43,30 +42,143 @@ const Feature2 = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("userData", JSON.stringify(formData));
-    alert("User data saved!");
-    setIsFormDirty(false); // Reset unsaved changes warning
+    setIsFormDirty(false);
+  };
+
+  const toggleDarkMode = (event) => {
+    setIsDarkMode(event.target.checked);
+  };
+
+  const paperStyle = {
+    backgroundColor: isDarkMode ? "#000" : "#fff", // Black for dark mode, white for light mode
+    color: isDarkMode ? "#fff" : "#000", // White text for dark mode, black text for light mode
+    padding: "20px",
+    borderRadius: "10px",
+    height: "calc(100% + 10px)", // Increased height by 10px
+    position: "relative", // Needed for absolute positioning of the button
+  };
+
+  const buttonStyle = {
+    marginTop: "10px",
+  };
+
+  const switchStyle = {
+    position: "absolute",
+    top: "10px",
+    right: "10px",
   };
 
   return (
-    <Container maxWidth="sm">
-      <Paper elevation={3} style={{ padding: "20px", marginTop: "20px", borderRadius: "10px" }}>
-        <Typography variant="h5" gutterBottom>
-          User Data Form
-        </Typography>
-        <Typography variant="body1" color="textSecondary" gutterBottom>
-          User ID: {formData.id}
-        </Typography>
-        <form onSubmit={handleSubmit}>
-          <TextField fullWidth label="Name" name="name" value={formData.name} onChange={handleChange} margin="normal" required />
-          <TextField fullWidth label="Address" name="address" value={formData.address} onChange={handleChange} margin="normal" required />
-          <TextField fullWidth label="Email" name="email" type="email" value={formData.email} onChange={handleChange} margin="normal" required />
-          <TextField fullWidth label="Phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} margin="normal" required />
-          <Button type="submit" variant="contained" color="primary" fullWidth style={{ marginTop: "20px" }}>
-            Save
-          </Button>
-        </form>
-      </Paper>
-    </Container>
+    <Paper elevation={3} className="form-container" style={paperStyle}>
+      {/* Dark mode toggle switch */}
+      <FormControlLabel
+        control={
+          <Switch
+            checked={isDarkMode}
+            onChange={toggleDarkMode}
+            name="darkModeSwitch"
+            color="primary"
+          />
+        }
+        label="Dark Mode"
+        style={{ color: isDarkMode ? '#fff' : '#000', ...switchStyle }}
+      />
+
+      <Typography variant="h6" gutterBottom>
+        User Data Form
+      </Typography>
+      <Typography variant="body2" color="textSecondary" gutterBottom>
+        User ID: {formData.id}
+      </Typography>
+
+      <form onSubmit={handleSubmit}>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              label="Name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              size="small"
+              required
+              InputProps={{
+                style: { color: isDarkMode ? '#fff' : '#000', backgroundColor: isDarkMode ? '#333' : '#fff' },
+              }}
+              InputLabelProps={{
+                style: { color: isDarkMode ? '#fff' : '#000' },
+              }}
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              label="Address"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              size="small"
+              required
+              InputProps={{
+                style: { color: isDarkMode ? '#fff' : '#000', backgroundColor: isDarkMode ? '#333' : '#fff' },
+              }}
+              InputLabelProps={{
+                style: { color: isDarkMode ? '#fff' : '#000' },
+              }}
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              label="Email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              size="small"
+              required
+              InputProps={{
+                style: { color: isDarkMode ? '#fff' : '#000', backgroundColor: isDarkMode ? '#333' : '#fff' },
+              }}
+              InputLabelProps={{
+                style: { color: isDarkMode ? '#fff' : '#000' },
+              }}
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              label="Phone"
+              name="phone"
+              type="tel"
+              value={formData.phone}
+              onChange={handleChange}
+              size="small"
+              required
+              InputProps={{
+                style: { color: isDarkMode ? '#fff' : '#000', backgroundColor: isDarkMode ? '#333' : '#fff' },
+              }}
+              InputLabelProps={{
+                style: { color: isDarkMode ? '#fff' : '#000' },
+              }}
+              variant="outlined"
+            />
+          </Grid>
+        </Grid>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          fullWidth
+          style={buttonStyle}
+        >
+          Save
+        </Button>
+      </form>
+    </Paper>
   );
 };
 
