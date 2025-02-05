@@ -70,6 +70,9 @@
   
   /* Login Box with Glassmorphism */
   .login-box {
+    display: flex;
+    align-items: center; /* Vertically align items */
+    justify-content: center; /* Horizontally center items */
     text-align: center;
     padding: 25px;
     background: rgba(255, 255, 255, 0.15);
@@ -78,16 +81,16 @@
     backdrop-filter: blur(12px);
     width: 400px;
     animation: fadeIn 1.5s ease-in-out;
-    justify-content: center;
-    align-items: center;
   }
   
   .login-box h2 {
     font-size: 24px;
     font-weight: bold;
     color: white;
-    margin-bottom: 15px;
+    margin-right: 10px; /* Space between text and button */
+    margin-bottom: 0; /* Remove bottom margin */
   }
+  
   
   /* Google Button Styling */
   .google-login-button {

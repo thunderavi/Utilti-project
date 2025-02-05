@@ -30,16 +30,11 @@ function GoogleAuth({ setIsLoggedIn }) {
 
         {/* Floating glow elements */}
         <div className="floating-glow"></div>
-
         <div className="login-box">
-          <h2>🚀 Login to Get Access</h2>
-          <GoogleLogin
-            onSuccess={handleSuccess}
-            onError={handleError}
-            theme="outline"
-            size="large"
-          />
-        </div>
+  <h2>🚀 Login to Get Access</h2>
+  <GoogleLogin onSuccess={handleSuccess} onError={handleError} theme="outline" size="mid" />
+</div>
+
 
         {/* Features grid */}
         <div className="features-grid">
